@@ -14,6 +14,14 @@ const Header = ({header}) => {
   )
 }
 
+const StatisticLine = ({text, value}) => {
+  return (
+    <div>
+      {text} {value}
+    </div>
+  )
+}
+
 const Statistics = ({good, neutral, bad}) => {
 
   const sum = () => {
@@ -44,17 +52,12 @@ const Statistics = ({good, neutral, bad}) => {
 
   return (
     <div>
-      good {good}
-      <br />
-      neutral {neutral}
-      <br />
-      bad {bad}
-      <br />
-      all {sum()}
-      <br />
-      average {computeAvg()}
-      <br />
-      positive {computePositives()}
+      <StatisticLine text="good" value={good}/>
+      <StatisticLine text="neutral" value={neutral}/>
+      <StatisticLine text="bad" value={bad}/>
+      <StatisticLine text="all" value={sum()}/>
+      <StatisticLine text="average" value={computeAvg()}/>
+      <StatisticLine text="positive" value={computePositives()}/>
     </div>
   )
 }
