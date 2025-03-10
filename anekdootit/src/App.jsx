@@ -8,6 +8,34 @@ const Button = ({text, onClick}) => {
   )
 }
 
+const DisplayHighest = ({votes, anecdotes}) => {
+  const [largestNum, setlargestNum] = useState(0)
+  const [mostVoted, setmostVoted] = useState(0)
+  
+  let i = 0
+  votes.forEach((voteValue) => {
+    if (voteValue > largestNum) {
+      setlargestNum(voteValue)
+      setmostVoted(i)
+    }
+    i += 1
+  })
+  
+  if (largestNum === 0) {
+    return (
+      <br/>
+    )
+  }
+  return (
+    <div>
+      {anecdotes[mostVoted]}
+      <br />
+      has {largestNum} votes
+    </div>
+  )
+}
+
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -40,6 +68,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br/>
       has {votes[selected]} votes
@@ -52,6 +81,11 @@ const App = () => {
         text="next anecdote" 
         onClick={handleClick}
         />
+      <h1>Anecdote with most votes</h1>
+      <DisplayHighest 
+        votes={votes} 
+        anecdotes={anecdotes}
+      />
     </div>
   )
 }
