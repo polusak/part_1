@@ -21,6 +21,7 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Uint8Array(anecdotes.length))
 
   const handleClick = () => {
     const randomizeSelected = (listSize) => {
@@ -30,12 +31,27 @@ const App = () => {
     randomizeSelected(anecdotes.length)
   }
 
+  const handleVote = () => {
+    const votesCopy = [...votes]
+    votesCopy[selected] += 1
+    setVotes(votesCopy)
+  }
+
 
   return (
     <div>
       {anecdotes[selected]}
       <br/>
-      <Button text="next anecdote" onClick={handleClick}/>
+      has {votes[selected]} votes
+      <br/>
+      <Button 
+        text="vote" 
+        onClick={handleVote} 
+      />
+      <Button 
+        text="next anecdote" 
+        onClick={handleClick}
+        />
     </div>
   )
 }
