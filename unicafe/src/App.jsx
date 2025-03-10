@@ -34,6 +34,14 @@ const Statistics = ({good, neutral, bad}) => {
     )
   }
 
+  if (sum() === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
+
   return (
     <div>
       good {good}
