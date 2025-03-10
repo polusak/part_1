@@ -15,6 +15,25 @@ const Header = ({header}) => {
 }
 
 const Statistics = ({good, neutral, bad}) => {
+
+  const sum = () => {
+    return (
+      good + neutral + bad
+    )
+  }
+
+  const computeAvg = () => {
+    return (
+      (good - bad)/sum()
+    )
+  }
+
+  const computePositives = () => {
+    return (
+      good/sum()
+    )
+  }
+
   return (
     <div>
       good {good}
@@ -22,6 +41,12 @@ const Statistics = ({good, neutral, bad}) => {
       neutral {neutral}
       <br />
       bad {bad}
+      <br />
+      all {sum()}
+      <br />
+      average {computeAvg()}
+      <br />
+      positive {computePositives()}
     </div>
   )
 }
