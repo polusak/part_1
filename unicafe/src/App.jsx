@@ -1,34 +1,81 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const Button = ({ onClick, text }) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
+
+const Header = ({header}) => {
+  return (
+    <div>
+      <h1>{header}</h1>
+    </div>
+  )
+}
+
+const Statistics = ({good, neutral, bad}) => {
+  return (
+    <div>
+      good {good}
+      <br />
+      neutral {neutral}
+      <br />
+      bad {bad}
+    </div>
+  )
+}
+
+
+const App = () => {
+  // tallenna napit omaan tilaansa
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  const handleGood = () => {
+    const newGood = good + 1
+    return (
+      setGood(newGood)
+    )
+  }
+
+  const handleNeutral = () => {
+    const newNeutral = neutral + 1
+    return (
+      setNeutral(newNeutral)
+    )
+  }
+
+  const handleBad = () => {
+    const newBad = bad + 1
+    return (
+      setBad(newBad)
+    )
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Header header="give feedback"/>
+      <Button
+        onClick={handleGood}
+        text='good'
+      />
+      <Button
+        onClick={handleNeutral}
+        text='neutral'
+      />     
+      <Button
+        onClick={handleBad}
+        text='bad'
+      />  
+      <Header header="statistics"/>
+      <Statistics 
+        good = {good}
+        neutral = {neutral}
+        bad = {bad}
+      />
+    </div>
   )
 }
 
