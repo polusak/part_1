@@ -51,7 +51,6 @@ const Statistics = ({good, neutral, bad}) => {
   )
 }
 
-
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
